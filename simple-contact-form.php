@@ -1,31 +1,31 @@
 <?php 
 
 /**
- * Plugin Name: Simple Contact Form
- * Plugin URI: https://example.com/simple-contact-form
- * Description: A simple and elegant contact form plugin. Note: Uninstalling will permanently delete all form submissions and settings.
- * Version: 1.0.1
+ * Plugin Name: Contact Form
+ * Plugin URI: https://abc.com/simple-contact-form
+ * Description: contact form plugin. [Uninstalling will permanently delete all form submissions history and saved settings].
+ * Version: 1.0.2
  * Author: Nayem Hossain
- * Author URI: https://example.com
+ * Author URI: https://abc.com
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: simple-contact-form
  * Domain Path: /languages
  */
 
-// Security: Exit if accessed directly
+// Security check
 if(!defined('ABSPATH')) {
     exit;
 }
 
 
-// Define constants for paths
+// paths defining
 define('SCF_VERSION', '1.0.1');
 define('SCF_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('SCF_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 
 
-// Include required classes
+// Include required classes file
 require_once SCF_PLUGIN_DIR . 'public/class-shortcode.php';
 require_once SCF_PLUGIN_DIR . 'includes/class-form-handler.php';
 require_once SCF_PLUGIN_DIR . 'includes/class-email-handler.php';
@@ -40,19 +40,18 @@ register_activation_hook(__FILE__, array('SCF_Database', 'create_table'));
 // Enqueue styles and scripts
 function scf_enqueue_assets() {
     wp_enqueue_style( 
-        'scf-public-style',                                 // Handle (unique name)
+        'scf-public-style',                                 
         SCF_PLUGIN_URL . 'assets/css/public-style.css', 
-        array(),                                            // Dependencies
+        array(),                                            
         SCF_VERSION 
     );
 
-    // Enqueue JavaScript
     wp_enqueue_script(
         'scf-public-script',
         SCF_PLUGIN_URL . 'assets/js/public-script.js',
-        array('jquery'),              // Depends on jQuery
+        array('jquery'),              
         SCF_VERSION,
-        true                          // Load in footer
+        true                          
     );
     
     // Pass data to JavaScript
