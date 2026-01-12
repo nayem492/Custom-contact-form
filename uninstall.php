@@ -1,14 +1,11 @@
 <?php
 /**
- * Fired when the plugin is uninstalled.
  *
- * This file runs when the user clicks "Delete" on the plugin in WordPress admin.
+ * This file runs when the "Delete" button getting clicked on the wordpress plugin dashboard.
  * It removes all plugin data from the database.
- *
- * @package Simple_Contact_Form
  */
 
-// If uninstall not called from WordPress, exit
+// security checked first
 if (!defined('WP_UNINSTALL_PLUGIN')) {
     exit;
 }
@@ -26,7 +23,7 @@ delete_option('scf_success_message'); // If you added this
 // Delete any transients (temporary data)
 delete_transient('scf_admin_notice');
 
-// Optional: Log the uninstall for debugging
+// Log the uninstall for debugging
 if (defined('WP_DEBUG') && WP_DEBUG) {
     error_log('Simple Contact Form plugin uninstalled and cleaned up.');
 }
